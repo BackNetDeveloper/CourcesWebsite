@@ -1,0 +1,42 @@
+﻿@model Category
+@{
+    ViewData["Title"] = "Create";
+}
+
+<center><h1>Create New Category</h1></center>
+<br />
+<div class="row mb-3">
+    <div class="col-12">
+        <form asp-action="Create" asp-controller="Category" enctype="multipart/form-data">
+
+               <div class="form-group">
+                   <label asp-for="@Model.Title" class="col-form-label "></label>
+                   <input asp-for="@Model.Title" class="form-control" />
+                   <span asp-validation-for="@Model.Title" class="text-danger"></span>
+               </div>
+                <div class="form-group">
+                    <label asp-for="@Model.Description" class="col-form-label "></label>
+                    <textarea asp-for="@Model.Description" rows="2" class="form-control" ></textarea>
+                    <span asp-validation-for="@Model.Description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.ThumbnailImagePath" class="col-form-label "></label>
+                    <input asp-for="@Model.ThumbnailImagePath" class="form-control" />
+                    <span asp-validation-for="@Model.ThumbnailImagePath" class="text-danger"></span>
+                </div>
+
+                <br />
+                <center>
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-outline-primary">Back To List</a>
+                </center>
+            </form>
+            <br />
+           
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

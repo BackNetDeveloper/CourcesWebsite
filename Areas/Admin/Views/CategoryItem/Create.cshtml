@@ -1,0 +1,64 @@
+﻿@model CategoryItem
+
+@{
+    ViewData["Title"] = "Create";
+}
+<Center>
+    <h1>Create</h1>
+
+    <h4>CategoryItem</h4>
+</Center>
+
+<hr />
+<div class="row mb-3">
+    <div class="col-12">
+        <form asp-action="Create" asp-controller="CategoryItem" enctype="multipart/form-data">
+
+            <input type="hidden" asp-for="CategoryId" value="@Model.CategoryId" class="form-control"/>
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="@Model.Description" rows="2" class="form-control"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MediaTypeId" class="control-label"></label>
+                <select asp-for="MediaTypeId" class ="form-control" asp-items="@Model.MediaTypes">
+                    <option value="">---Please Select A Media Type---</option>
+                </select>
+                <span asp-validation-for="MediaTypeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateTimeItemReleased" class="control-label"></label>
+                <input type="text" 
+                       name="DateTimeItemReleased" 
+                       Id="DateTimeItemReleased"
+                       value="@Model.DateTimeItemReleased.ToString("yyyy-MM-dd")"
+                       class="datepicker form-control" />
+                <span asp-validation-for="DateTimeItemReleased" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <center>
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                    <a asp-action="Index" asp-route-categoryId="@Model.CategoryId" class="btn btn-outline-primary">Back To List</a>
+                </center>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts
+    {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        await Html.RenderPartialAsync("_dateScriptPartial");
+    }
+}
+

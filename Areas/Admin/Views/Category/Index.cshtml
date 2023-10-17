@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Category>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<center>
+<h1>All Categories</h1>
+<br />
+<a asp-action="Create" class="btn btn-warning ">Create New Category</a>
+</center>
+<div>
+    @if (TempData["success1"] != null)
+    {
+        <div class="alert alert-warning mt-5">
+            <center> <h3> @TempData["success1"] </h3></center>
+        </div>
+    }
+</div>
+<br />
+ <br />
+
+@if (Model?.Count() > 0)
+{
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th> @Html.DisplayNameFor(E=>E.Id)     </th>
+                <th> @Html.DisplayNameFor(E=>E.Title)   </th>
+                <th> @Html.DisplayNameFor(E=>E.Description) </th>
+                <th> @Html.DisplayNameFor(E=>E.ThumbnailImagePath) </th>
+                <th> Details</th>
+                <th> Update</th>
+                <th> Delete</th>
+                <th> Category Items</th>
+            </tr>    
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td> @Html.DisplayFor(E=>item.Id)      </td>
+                <td> @Html.DisplayFor(E=>item.Title)    </td>
+                <td> @Html.DisplayFor(E=>item.Description)  </td>
+                <td> @Html.DisplayFor(E=>item.ThumbnailImagePath)  </td>
+                <partial name="_ButtonsViewPartial" model="@item.Id.ToString()" />
+                <td>
+                <a class="btn btn-outline-dark"  asp-controller="CategoryItem" asp-action="Index" asp-route-categoryId="@item.Id"> Category Items </a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-warning mt-5">
+        <center> <h3>No Categories Found</h3></center>
+    </div>
+}
+

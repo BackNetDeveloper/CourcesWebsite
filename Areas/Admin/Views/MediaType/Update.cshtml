@@ -1,0 +1,37 @@
+﻿@model MediaType
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<Center>
+    <h1>Update</h1>
+    <h4>MediaType</h4>
+</Center>
+<hr />
+<div class="row">
+    <div class="col-12">
+        <form asp-action="Update">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ThumbnailImagePath" class="control-label"></label>
+                <input asp-for="ThumbnailImagePath" class="form-control" />
+                <span asp-validation-for="ThumbnailImagePath" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <center>
+                    <input type="submit" value="Update" class="btn btn-warning" />
+                    <a asp-action="Index" class="btn btn-outline-warning">Back To List</a>
+                </center>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

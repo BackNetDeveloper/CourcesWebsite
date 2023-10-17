@@ -1,0 +1,42 @@
+﻿@model CategoryItem
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>CategoryItem</h4>
+    <hr />
+    <div class="row">
+        <div class="col-12">
+            <div class="form-group">
+                <label asp-for="@Model.Id" class="col-form-label "></label>
+                <input asp-for="@Model.Id" class="form-control" readonly />
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Title" class="col-form-label "></label>
+                <input asp-for="@Model.Title" class="form-control" readonly />
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Description" class="col-form-label "></label>
+                <input asp-for="@Model.Description" class="form-control" readonly />
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.DateTimeItemReleased" class="col-form-label "></label>
+                <input type="text" 
+                       name="DateTimeItemReleased" 
+                       Id="DateTimeItemReleased"
+                       value="@Model.DateTimeItemReleased.ToString("yyyy-MM-dd")"
+                       class="datepicker form-control" readonly/>
+            </div>
+            <br />
+            <center>
+                <a asp-action="Update" asp-route-id="@Model.Id" class="btn btn-success">Update</a>
+                <a asp-action="Index" asp-route-categoryId="@Model.CategoryId" class="btn btn-outline-success">Back To List</a>
+            </center>
+        </div>
+    </div>
+
+</div>

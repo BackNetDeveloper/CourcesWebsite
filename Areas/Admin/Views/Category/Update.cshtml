@@ -1,0 +1,45 @@
+﻿@model Category
+@{
+    ViewData["Title"] = "Update";
+}
+
+<center>
+    <h1>Update</h1>
+</center>
+<br />
+<div class="row">
+    <div class="col-12">
+            <form method="post" asp-action="Update" asp-controller="Category" enctype="multipart/form-data">
+                <input hidden asp-for="Id" />
+            <label for="ID"> ID </label>
+            <input id="ID" class="form-control" type="number" name="ID" value="@Model.Id" readonly>
+            
+            <div class="form-group">
+                <label asp-for="@Model.Title" class="col-form-label "></label>
+                <input asp-for="@Model.Title" class="form-control" />
+                <span asp-validation-for="@Model.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Description" class="col-form-label "></label>
+                <textarea asp-for="@Model.Description" rows="2" class="form-control"></textarea>
+                <span asp-validation-for="@Model.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.ThumbnailImagePath" class="col-form-label "></label>
+                <input asp-for="@Model.ThumbnailImagePath" class="form-control" />
+                <span asp-validation-for="@Model.ThumbnailImagePath" class="text-danger"></span>
+            </div>
+            <br />
+           <center>
+                <input type="submit" value="Update" class="btn btn-warning" />
+
+                <a asp-action="Index" class="btn btn-outline-warning">Back To List</a>
+            </center>
+            </form>
+    </div>
+</div>
+@section Scripts
+    {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+     }

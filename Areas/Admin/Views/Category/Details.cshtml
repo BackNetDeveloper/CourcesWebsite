@@ -1,0 +1,32 @@
+﻿@model Category
+@{
+    ViewData["Title"] = "Details";
+}
+
+<center><h1>Category Details</h1></center>
+
+<div class="row">
+    <div class="col-12">
+        <div class="form-group">
+            <label asp-for="@Model.Id" class="col-form-label "></label>
+            <input asp-for="@Model.Id" class="form-control" readonly />
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Title" class="col-form-label "></label>
+            <input asp-for="@Model.Title" class="form-control" readonly />
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Description" class="col-form-label "></label>
+            <input asp-for="@Model.Description" class="form-control" readonly />
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.ThumbnailImagePath" class="col-form-label "></label>
+            <input asp-for="@Model.ThumbnailImagePath" class="form-control" readonly />
+        </div>
+        <br />
+        <center>
+        <a asp-action="Update" asp-route-id="@Model.Id" class="btn btn-success">Edit</a>
+            <a asp-action="Index" asp-route-categoryId="@Model.Id" class="btn btn-outline-success">Back To List</a>
+        </center>
+    </div>
+</div>

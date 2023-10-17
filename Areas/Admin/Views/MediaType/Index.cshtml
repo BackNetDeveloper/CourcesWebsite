@@ -1,0 +1,42 @@
+﻿@model IEnumerable<MediaType>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<Center>
+    <h1>All Media Types</h1>
+    <a asp-action="Create" class="btn btn-warning ">Create New Media Type</a>
+</Center>
+<br />
+@if (Model?.Count() > 0)
+{
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th> @Html.DisplayNameFor(E=>E.Title)   </th>
+                <th> @Html.DisplayNameFor(E=>E.ThumbnailImagePath) </th>
+                <th>   Details</th>
+                <th>   Update</th>
+                <th>   Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+
+                <tr>
+                    <td> @Html.DisplayFor(E=>item.Title)    </td>
+                    <td> @Html.DisplayFor(E=>item.ThumbnailImagePath)  </td>
+                    <partial name="_ButtonsViewPartial" model="@item.Id.ToString()" />
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-warning mt-5">
+        <center> <h3>No Media Types Found</h3></center>
+    </div>
+}
+

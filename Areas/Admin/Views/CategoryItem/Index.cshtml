@@ -1,0 +1,68 @@
+﻿@model IEnumerable<CategoryItem>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<center>
+    <h1>All Items For This Category </h1>
+    <br />
+    <a asp-action="Create" asp-route-categoryId="@ViewBag.CategoryId" class="btn btn-warning ">Create New CategoryItem</a>
+</center>
+<br />
+@if (Model?.Count() > 0)
+{
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th> @Html.DisplayNameFor(E=>E.Title)   </th>
+                <th> @Html.DisplayNameFor(E=>E.Description) </th>
+                <th> @Html.DisplayNameFor(E=>E.DateTimeItemReleased) </th>
+                <th> Details</th>
+                <th> Update</th>
+                <th> Delete</th>
+                <th> Content </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td> @Html.DisplayFor(E=>item.Title)    </td>
+                    <td> @Html.DisplayFor(E=>item.Description)  </td>
+                    <td> @Html.DisplayFor(E=>item.DateTimeItemReleased)  </td>
+                    <partial name="_ButtonsViewPartial" model="@item.Id.ToString()" />
+                    @* This Check For Display An Add Or Update The Content *@
+                    <td>
+                        @if(item.ContentId == 0)
+                        {
+                            <a class="btn btn-outline-dark"
+                                  asp-controller="Content"
+                                  asp-action="Create" 
+                                  asp-route-CategoryItemId="@item.Id"
+                                  asp-route-CategoryId="@item.CategoryId">
+                                  Add Content
+                            </a>
+                        }
+                        else
+                        {
+                            <a class="btn btn-outline-dark"
+                                  asp-controller="Content"
+                                  asp-action="Update"
+                                  asp-route-CategoryItemId="@item.Id"
+                                  asp-route-CategoryId="@item.CategoryId">
+                                Update Content
+                            </a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-warning mt-5">
+        <center> <h3>No Items For This Category Found</h3></center>
+    </div>
+}
+
